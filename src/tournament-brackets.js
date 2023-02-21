@@ -61,43 +61,10 @@ function TournamentBrackets(options) {
         hasDoubleElimination: false,
         showResult: false,
         showControls: false,
-        data: [{
-            winners: [
-                [
-                    [
-                        {name: 'team 1', result: 3, hasWon: true}, 
-                        {name: 'team 2', result: 1, hasWon: false}
-                    ],
-                    [
-                        {name: 'team 3', result: 2, hasWon: true}, 
-                        {name: 'team 4', result: 0, hasWon: false}
-                    ],
-                    [
-                        {name: 'team 5', result: 2, hasWon: true}, 
-                        {name: 'team 6', result: 1, hasWon: false}
-                    ],
-                    [
-                        {name: 'team 7', result: 4, hasWon: true}, 
-                        {name: 'team 8', result: 2, hasWon: false}
-                    ]
-                ], [
-                    [
-                        {name: 'team 1', result: 4, hasWon: true}, 
-                        {name: 'team 3', result: 3, hasWon: false}
-                    ],
-                    [
-                        {name: 'team 5', result: 2, hasWon: false}, 
-                        {name: 'team 7', result: 1, hasWon: true}
-                    ]
-                ], [
-                    [
-                        {name: 'team 1', result: 3, hasWon: true}, 
-                        {name: 'team 7', result: 2, hasWon: false}
-                    ]
-                ]
-            ],
+        data: {
+            winners: [],
             losers: []
-        }]
+        }
     }
 
     options = {...defaulltOptions, ...options};
@@ -105,6 +72,41 @@ function TournamentBrackets(options) {
     let _this = this;
 
     this.init = function() {
+        let container = document.querySelector(options.containerElement);
 
+        if(!container.classList.contains('tournament-brackets'))
+            container.classList.add('tournament-brackets');
+
+        
+        if(!options.data.winners)
+            return;        
+
+        container.innerHTML = this.generateHtml();
     }
+
+    this.generateHtml = function() {
+        let appendableHtml = '<div class="winners-bracket">';
+
+        options.data.winners.forEach(round => {
+            appendableHtml += '<div class="bracket-round">';
+
+            round.forEach(table => {
+                appendableHtml += '<table>';
+
+                table.forEach(item => {
+                    appendableHtml += `<tr class="${item.status ? item.status : ''}"><td>${item.name}</td>${options.showResult ? '<td>' + item.result + '</td>' : ''}</tr>`
+                })
+
+                appendableHtml += '</table>';
+            })
+
+            appendableHtml += '</div>';
+        })
+
+        appendableHtml += '</div>';
+
+        return appendableHtml;
+    }
+
+    this.init();
 }
