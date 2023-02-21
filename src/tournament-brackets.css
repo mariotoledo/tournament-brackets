@@ -1,0 +1,38 @@
+:root {
+    --green: #00FF00;
+    --red: #FF0000;
+}
+
+.tournament-brackets {
+    overflow-x: scroll;
+}
+
+.tournament-brackets .winners-bracket, .tournament-brackets .losers-bracket {
+    width: 100%;
+    margin: 20px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.tournament-brackets .bracket-round {
+    min-width: 200px;
+    margin-right: 20px;
+}
+
+.tournament-brackets .bracket-round table {
+    width: 100%;
+    border-spacing: 0px;
+    margin-bottom: 20px;
+}
+
+.tournament-brackets .bracket-round table td {
+    border: 1px solid #000;
+}
+
+.tournament-brackets .bracket-round .winner {
+    background-color: var(--green);
+}
+
+.tournament-brackets .bracket-round .loser {
+    background-color: var(--red);
+}
