@@ -16,7 +16,7 @@
         - losers: array of arrays, each element represents a round from the losers bracket. Has the same structure as the winners;
 
 
-        eg: [{
+        eg: {
             winners: [
                 [
                     [
@@ -52,7 +52,7 @@
                 ]
             ],
             losers: []
-        }]
+        }
 */
 
 function TournamentBrackets(options) {
