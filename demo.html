@@ -7,12 +7,22 @@
     </head>
     <body>
         <div id="tournament-brackets" class="tournament-brackets">
-            
+            <h2>Winners Bracket <button v-on:click="addRound()">Add Round</button></h2>
+            <div class="winners-bracket" v-if="winners && winners.length > 0">
+                <div class="bracket-round" v-for="round in winners">
+                    <button>Add Bracket</button>
+                    <table v-for="table in round">
+                        <tr>
+                            <button>Add Player/Team</button>
+                        </tr>
+                        <tr v-for="player in table">
+                            <td>{{player.name}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
         <script src="src/tournament-brackets.js"></script>
-        <script>
-            new TournamentBrackets({showControls: true});
-        </script>
     </body>
 </html>

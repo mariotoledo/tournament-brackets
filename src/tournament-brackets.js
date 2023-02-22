@@ -60,71 +60,11 @@ new Vue({
     data: {
         winners: [],
         losers: []
+    },
+    methods: {
+        addRound: function() {
+            console.log('dijflsdjflds');
+            this.winners.push([]);
+        }
     }
 });
-
-function TournamentBrackets(options) {
-    let defaulltOptions = {
-        containerElement: '#tournament-brackets',
-        hasDoubleElimination: false,
-        showResult: false,
-        showControls: false,
-        data: {
-            winners: [],
-            losers: []
-        }
-    }
-
-    options = {...defaulltOptions, ...options};
-
-    let _this = this;
-
-    this.init = function() {
-        let container = document.querySelector(options.containerElement);
-
-        if(!container.classList.contains('tournament-brackets'))
-            container.classList.add('tournament-brackets');
-
-        
-        if(!options.data.winners)
-            return;        
-
-        container.innerHTML = this.generateHtml();
-    }
-
-    this.generateHtml = function() {
-        let appendableHtml = '<div class="winners-bracket">';
-
-        if(options.showControls) {
-            appendableHtml += '<button onclick="addNewRound()">Add Round</button>'
-        }
-
-        options.data.winners.forEach(round => {
-            appendableHtml += '<div class="bracket-round">';
-
-            round.forEach(table => {
-                appendableHtml += '<table>';
-
-                table.forEach(item => {
-                    appendableHtml += `<tr class="${item.status ? item.status : ''}"><td>${item.name}</td>${options.showResult ? '<td>' + item.result + '</td>' : ''}</tr>`
-                })
-
-                appendableHtml += '</table>';
-            })
-
-            appendableHtml += '</div>';
-        })
-
-        appendableHtml += '</div>';
-
-        return appendableHtml;
-    }
-
-    this.addNewRound = function() {
-        data.winners.push([]);
-        history.pushState(data);
-        this.init();
-    }
-
-    this.init();
-}
