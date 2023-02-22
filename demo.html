@@ -6,35 +6,13 @@
         <link href="src/tournament-brackets.css" rel="stylesheet">
     </head>
     <body>
-        <div id="tournament-brackets"></div>
+        <div id="tournament-brackets" class="tournament-brackets">
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
         <script src="src/tournament-brackets.js"></script>
         <script>
-            new TournamentBrackets({
-                data: {
-                    winners: [
-                        [
-                            [
-                                {name: 'team 1', result: 3}, 
-                                {name: 'team 2', result: 1},
-                                {name: 'team alpha', result: 1}
-                            ],
-                            [
-                                {name: 'team 3', result: 2}, 
-                                {name: 'team 4', result: 0}
-                            ],
-                            [
-                                {name: 'team 5', result: 2}, 
-                                {name: 'team 6', result: 1}
-                            ],
-                            [
-                                {name: 'team 7', result: 4}, 
-                                {name: 'team 8', result: 2}
-                            ]
-                        ]
-                    ],
-                    losers: []
-                }
-            });
+            new TournamentBrackets({showControls: true});
         </script>
     </body>
 </html>

@@ -55,6 +55,14 @@
         }
 */
 
+new Vue({
+    el: "#tournament-brackets",
+    data: {
+        winners: [],
+        losers: []
+    }
+});
+
 function TournamentBrackets(options) {
     let defaulltOptions = {
         containerElement: '#tournament-brackets',
@@ -87,6 +95,10 @@ function TournamentBrackets(options) {
     this.generateHtml = function() {
         let appendableHtml = '<div class="winners-bracket">';
 
+        if(options.showControls) {
+            appendableHtml += '<button onclick="addNewRound()">Add Round</button>'
+        }
+
         options.data.winners.forEach(round => {
             appendableHtml += '<div class="bracket-round">';
 
@@ -106,6 +118,12 @@ function TournamentBrackets(options) {
         appendableHtml += '</div>';
 
         return appendableHtml;
+    }
+
+    this.addNewRound = function() {
+        data.winners.push([]);
+        history.pushState(data);
+        this.init();
     }
 
     this.init();
